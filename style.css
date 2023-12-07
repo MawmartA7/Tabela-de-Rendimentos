@@ -1,0 +1,75 @@
+.ButtonPlusAndDecrement {
+    width: 70px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 10px;
+    border-width: 2px;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#divButtons {
+    display: flex;
+}
+#ButtonDecrement{
+    margin-left: 5px;
+}
+.texts {
+    font-size: 26px;
+    margin-bottom: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.Ticker{
+    width: 155px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.numbers {
+    width: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#quantidade {
+    width: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#pagoPorCota {
+    width: 60px;
+}
+#cal {
+    width: 160px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 10px;
+    border-width: 2px;
+    text-align: center;
+    margin-left: 58.2%;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.Total {
+    width: 129px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: rgb(48, 119, 157);
+    
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+#title {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    background: white;
+    border-radius: 15px;
+    border: solid black 2px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.548);
+    width: 300px;
+    margin: auto;
+}
+#divDeSectionsComInputs{
+    margin-top: 20px;
+}
+html{
+   overflow: hidden; 
+}
