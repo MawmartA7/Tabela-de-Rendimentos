@@ -1,34 +1,5 @@
 let valoresInputs = [];
 let idInputs = 0;
-function entrarNoCal() {
-  if (idInputs === 0) {
-    return;
-  }
-  buttonCalcular.style.background = "#e5e5e5";
-}
-function sairDoCal() {
-  if (idInputs === 0) {
-    return;
-  }
-  buttonCalcular.style.background = "white";
-}
-function entrarNoPlus() {
-  ButtonPlus.style.background = "#e5e5e5";
-  // document.getElementById('+').style.background = "#e5e5e5";
-}
-function sairDoPlus() {
-  ButtonPlus.style.background = "white";
-  // document.getElementById('+').style.background = "white";
-}
-function entrarNoDecrement() {
-  if (idInputs === 0) {
-    return;
-  }
-  ButtonDecrement.style.background = "#e5e5e5";
-}
-function sairDoDecrement() {
-  ButtonDecrement.style.background = "white";
-}
 
 function calcularTotalDeCadaId() {
   let idDeCadaInput = 0;
@@ -151,7 +122,8 @@ function calcularTotal(idDeCadaInput, linhaPorId, event) {
       ValorT.focus();
       return;
     }
-    const total = quantidadeV * ValorV;
+    let total = (quantidadeV * ValorV).toFixed(2);
+    total = parseFloat(total)
     if (!(TickerV === TickerV.toUpperCase(TickerV))) {
       TickerT.value = `${TickerV.toUpperCase(TickerV)}`;
     }
@@ -187,10 +159,10 @@ function incrementarInputs() {
   if (idInputs === 0) {
     const inputs = `
     <input type="text" class="texts Ticker" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'dataPG${idInputs}')">
-    <input type="text" class="texts numbers" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
-    <input type="text" class="texts numbers" name="dataC" id="dataC${idInputs}" placeholder="DataC" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
-    <input type="text" class="texts numbers" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" onkeydown="moveToNextInput(event, 'Valor${idInputs}')">
-    <input type="text" class="texts numbers" name="Valor" id="Valor${idInputs}" placeholder="Valor" onkeydown="calcularTotal('${idInputs}', '${
+    <input type="text" class="texts datas" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
+    <input type="text" class="texts datas" name="dataC" id="dataC${idInputs}" placeholder="DataC" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
+    <input type="text" class="texts quantidade" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" onkeydown="moveToNextInput(event, 'Valor${idInputs}')">
+    <input type="text" class="texts Valor" name="Valor" id="Valor${idInputs}" placeholder="Valor" onkeydown="calcularTotal('${idInputs}', '${
       idInputs + 1
     }', event)">
     <input type="text" class="texts Total" name="Total" id="Total${idInputs}" placeholder="Total" readonly><br>
@@ -204,12 +176,12 @@ function incrementarInputs() {
   if (idInputs % 2 != 0) {
     const inputs = `
     <input type="text" class="texts Ticker" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'Ticker${idInputs}')">
-    <input type="text" class="texts numbers" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
-    <input type="text" class="texts numbers" name="dataC" id="dataC${idInputs}" placeholder="DataC" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
-    <input type="text" class="texts numbers" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" style="background: rgb(206, 206, 206);" onkeydown="calcularTotal('${idInputs}', '${
+    <input type="text" class="texts datas" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
+    <input type="text" class="texts datas" name="dataC" id="dataC${idInputs}" placeholder="DataC" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
+    <input type="text" class="texts quantidade" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" style="background: rgb(206, 206, 206);" onkeydown="calcularTotal('${idInputs}', '${
       idInputs + 1
     }', event)">
-    <input type="text" class="texts numbers" name="Valor" id="Valor${idInputs}" placeholder="Valor" style="background: rgb(206, 206, 206);">
+    <input type="text" class="texts Valor" name="Valor" id="Valor${idInputs}" placeholder="Valor" style="background: rgb(206, 206, 206);">
     <input type="text" class="texts Total" name="Total" id="Total${idInputs}" placeholder="Total" style="background: rgb(206, 206, 206);" readonly><br>
     `;
 
@@ -222,10 +194,10 @@ function incrementarInputs() {
     const inputs = `
       <section id="section${idInputs}">
       <input type="text" class="texts Ticker" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'Ticker${idInputs}')">
-      <input type="text" class="texts numbers" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
-      <input type="text" class="texts numbers" name="dataC" id="dataC${idInputs}" placeholder="DataC" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
-      <input type="text" class="texts numbers" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" onkeydown="moveToNextInput(event, 'Valor${idInputs}')">
-      <input type="text" class="texts numbers" name="Valor" id="Valor${idInputs}" placeholder="Valor" onkeydown="calcularTotal('${idInputs}', '${
+      <input type="text" class="texts datas" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
+      <input type="text" class="texts datas" name="dataC" id="dataC${idInputs}" placeholder="DataC" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
+      <input type="text" class="texts quantidade" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" onkeydown="moveToNextInput(event, 'Valor${idInputs}')">
+      <input type="text" class="texts Valor" name="Valor" id="Valor${idInputs}" placeholder="Valor" onkeydown="calcularTotal('${idInputs}', '${
       idInputs + 1
     }', event)">
       <input type="text" class="texts Total" name="Total" id="Total${idInputs}" placeholder="Total" readonly><br>
@@ -264,19 +236,13 @@ function moveToNextInput(event, nextInputId) {
 
 
 let buttonCalcular = document.getElementById(`cal`);
-buttonCalcular.addEventListener("mouseenter", entrarNoCal);
-buttonCalcular.addEventListener("mouseout", sairDoCal);
 buttonCalcular.addEventListener("click", calcularTotalDeCadaId);
 
 let confirmaçãoDeUltrapassarLimiteDeInputs = false;
 const ButtonPlus = document.getElementById("ButtonPlus");
-ButtonPlus.addEventListener("mouseenter", entrarNoPlus);
-ButtonPlus.addEventListener("mouseout", sairDoPlus);
 ButtonPlus.addEventListener("click", incrementarInputs);
 
 const ButtonDecrement = document.getElementById("ButtonDecrement");
-ButtonDecrement.addEventListener("mouseenter", entrarNoDecrement);
-ButtonDecrement.addEventListener("mouseout", sairDoDecrement);
 ButtonDecrement.addEventListener("click", decrementarInputs);
 
 document.addEventListener("wheel", function (event) {
