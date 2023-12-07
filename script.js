@@ -123,7 +123,7 @@ function calcularTotal(idDeCadaInput, linhaPorId, event) {
       return;
     }
     let total = (quantidadeV * ValorV).toFixed(2);
-    total = parseFloat(total)
+    total = parseFloat(total);
     if (!(TickerV === TickerV.toUpperCase(TickerV))) {
       TickerT.value = `${TickerV.toUpperCase(TickerV)}`;
     }
@@ -133,14 +133,14 @@ function calcularTotal(idDeCadaInput, linhaPorId, event) {
 }
 
 function salvarValores() {
-  const inputs = document.querySelectorAll('.texts');
-  valoresInputs = Array.from(inputs).map(input => input.value || '');
+  const inputs = document.querySelectorAll(".texts");
+  valoresInputs = Array.from(inputs).map((input) => input.value || "");
 }
 
 function restaurarValores() {
-  const inputs = document.querySelectorAll('.texts');
+  const inputs = document.querySelectorAll(".texts");
   Array.from(inputs).forEach((input, index) => {
-    input.value = valoresInputs[index] || '';
+    input.value = valoresInputs[index] || "";
   });
 }
 
@@ -234,6 +234,51 @@ function moveToNextInput(event, nextInputId) {
   }
 }
 
+function mostrarDropdown() {
+  var listaEscolas = document.getElementById("listaEscolas");
+  var title = document.getElementById("title");
+
+  if (
+    listaEscolas.style.display === "none" ||
+    listaEscolas.style.display === ""
+  ) {
+    listaEscolas.style.display = "block";
+    title.style.borderRadius = "15px 15px 0px 0px";
+    // Ajusta a posição da lista abaixo do cabeçalho
+    listaEscolas.style.top = title.offsetTop + title.offsetHeight + "px";
+    // Adiciona um ouvinte de eventos para fechar a lista quando clicar fora dela
+    document.addEventListener("click", fecharDropdown);
+  } else {
+    title.style.borderRadius = "15px 15px 15px 15px";
+    listaEscolas.style.display = "none";
+    // Remove o ouvinte de eventos para fechar a lista
+    document.removeEventListener("click", fecharDropdown);
+  }
+}
+
+function selecionarEscola(nomeEscola) {
+  alert("Você selecionou a escola: " + nomeEscola);
+
+  // Aqui você pode realizar outras ações ao selecionar uma escola
+  var listaEscolas = document.getElementById("listaEscolas");
+  title.style.borderRadius = "15px 15px 15px 15px";
+  listaEscolas.style.display = "none";
+  // Remove o ouvinte de eventos para fechar a lista
+  document.removeEventListener("click", fecharDropdown);
+}
+
+function fecharDropdown(event) {
+  var listaEscolas = document.getElementById("listaEscolas");
+  var title = document.getElementById("title");
+
+  // Verifica se o clique ocorreu fora do cabeçalho e da lista
+  if (!event.target.matches("#title") && !event.target.matches(".itemEscola")) {
+    title.style.borderRadius = "15px 15px 15px 15px";
+    listaEscolas.style.display = "none";
+    // Remove o ouvinte de eventos para fechar a lista
+    document.removeEventListener("click", fecharDropdown);
+  }
+}
 
 let buttonCalcular = document.getElementById(`cal`);
 buttonCalcular.addEventListener("click", calcularTotalDeCadaId);
