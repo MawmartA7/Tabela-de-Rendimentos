@@ -1,22 +1,63 @@
-.ButtonPlusAndDecrement {
-    width: 70px;
-    height: 50px;
-    font-size: 30px;
-    border-radius: 10px;
-    border-width: 2px;
+body{
+    background-color: rgb(48, 119, 157);
+    
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+html{
+   overflow: hidden; 
+}
+#title {
     text-align: center;
-    font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     color: black;
-    margin-left: 5px;
-    background-color: rgb(255, 255, 255);
+    background: white;
+    border-radius: 15px 15px 15px 15px;
+    border: solid black 2px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.548);
+    width: 40%;
+    margin: auto;
 }
-.ButtonPlusAndDecrement:hover{
-    cursor: pointer;
+#title:hover{
     background-color: #e5e5e5;
+    cursor: pointer;
+    
 }
-#divButtons {
-    display: flex;
+#divDeSectionsComInputs{
+    margin-top: 20px;
+}
+#listaEscolas {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(20, 11, 11);
+    background: white;
+    border-radius: 0px 0px 15px 15px;
+    border: solid black 2px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.548);
+    width: 40%;
+    display: none;
+   position: absolute;
+    z-index: 2; /* Valor aumentado para garantir que fique sobreposto */
+   left: 50%; /* Centraliza a lista no eixo horizontal */
+    transform: translateX(-50%); /* Ajusta para centralizar corretamente */    
+}
+.itemEscola {
+    margin: 0;
+    display: block;
+    color: black;
+}
+.itemEscola a{
+    color: inherit;
+    text-decoration: none;
+}
+.itemEscola:hover {
+     background-color: #e5e5e5;
+     cursor: pointer;
+}
+#Monique:hover {
+    background-color: #e5e5e5;
+    border-radius: 0px 0px 15px 15px ;
 }
 .texts {
     font-size: 26px;
@@ -45,6 +86,26 @@
     width: 15.6%;
     font-family: Arial, Helvetica, sans-serif;
 }
+#divButtons {
+    display: flex;
+}
+.ButtonPlusAndDecrement {
+    width: 70px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 10px;
+    border-width: 2px;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    margin-left: 5px;
+    background-color: rgb(255, 255, 255);
+}
+.ButtonPlusAndDecrement:hover{
+    cursor: pointer;
+    background-color: #e5e5e5;
+}
 #cal {
 
     width: 160px;
@@ -53,8 +114,7 @@
     border-radius: 10px;
     border-width: 2px;
     text-align: center;
-    /* margin-left: 58.2%; */
-    margin-left: 36.7%;
+    margin-left: 5px;
     background-color: white;
     font-family: Arial, Helvetica, sans-serif;
     color: black;
@@ -62,59 +122,4 @@
 #cal:hover{
     cursor: pointer;
     background-color: #e5e5e5;
-}
-body{
-    background-color: rgb(48, 119, 157);
-    
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-}
-#title {
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    color: black;
-    background: white;
-    border-radius: 15px 15px 15px 15px;
-    border: solid black 2px;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.548);
-    width: 40%;
-    margin: auto;
-}
-#title:hover{
-    background-color: #e5e5e5;
-}
-#divDeSectionsComInputs{
-    margin-top: 20px;
-}
-html{
-   overflow: hidden; 
-}
-#listaEscolas {
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    color: rgb(20, 11, 11);
-    background: white;
-    border-radius: 0px 0px 15px 15px;
-    border: solid black 2px;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.548);
-    width: 40%;
-    display: none;
-    position: absolute;
-    z-index: 2; /* Valor aumentado para garantir que fique sobreposto */
-    left: 50%; /* Centraliza a lista no eixo horizontal */
-    transform: translateX(-50%); /* Ajusta para centralizar corretamente */    
-}
-.itemEscola {
-    margin: 0;
-    text-decoration: none;
-    display: block;
-    color: black;
-}
-.itemEscola:hover {
-    background-color: #e5e5e5;
-}
-#Monique:hover {
-    background-color: #e5e5e5;
-    border-radius: 0px 0px 15px 15px ;
 }

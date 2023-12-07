@@ -133,8 +133,14 @@ function calcularTotal(idDeCadaInput, linhaPorId, event) {
 }
 
 function salvarValores() {
-  const inputs = document.querySelectorAll(".texts");
-  valoresInputs = Array.from(inputs).map((input) => input.value || "");
+  if (recuperando) {
+    const inputs = document.querySelectorAll(".Restaurar");
+    valoresInputs = Array.from(inputs).map((input) => input.value || "");
+    return;
+  } else {
+    const inputs = document.querySelectorAll(".texts");
+    valoresInputs = Array.from(inputs).map((input) => input.value || "");
+  }
 }
 
 function restaurarValores() {
@@ -145,24 +151,17 @@ function restaurarValores() {
 }
 
 function incrementarInputs() {
-  if (idInputs + 1 === 26) {
-    alert("limite atingido");
-    alert("Não é recomendado ultrapassar este limite");
-    confirmaçãoDeUltrapassarLimiteDeInputs = confirm(
-      `Se você quiser ultrapassar o limite então confirme`
-    );
-    if (!confirmaçãoDeUltrapassarLimiteDeInputs) {
-      return;
-    }
+  if (recuperando === false) {
+    salvarValores();
   }
-  salvarValores();
+
   if (idInputs === 0) {
     const inputs = `
-    <input type="text" class="texts Ticker" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'dataPG${idInputs}')">
-    <input type="text" class="texts datas" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
-    <input type="text" class="texts datas" name="dataC" id="dataC${idInputs}" placeholder="DataC" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
+    <input type="text" class="texts Ticker Restaurar" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'dataPG${idInputs}')">
+    <input type="text" class="texts datas Restaurar" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
+    <input type="text" class="texts datas Restaurar" name="dataC" id="dataC${idInputs}" placeholder="DataC" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
     <input type="text" class="texts quantidade" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" onkeydown="moveToNextInput(event, 'Valor${idInputs}')">
-    <input type="text" class="texts Valor" name="Valor" id="Valor${idInputs}" placeholder="Valor" onkeydown="calcularTotal('${idInputs}', '${
+    <input type="text" class="texts Valor Restaurar" name="Valor" id="Valor${idInputs}" placeholder="Valor" onkeydown="calcularTotal('${idInputs}', '${
       idInputs + 1
     }', event)">
     <input type="text" class="texts Total" name="Total" id="Total${idInputs}" placeholder="Total" readonly><br>
@@ -175,13 +174,13 @@ function incrementarInputs() {
   }
   if (idInputs % 2 != 0) {
     const inputs = `
-    <input type="text" class="texts Ticker" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'Ticker${idInputs}')">
-    <input type="text" class="texts datas" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
-    <input type="text" class="texts datas" name="dataC" id="dataC${idInputs}" placeholder="DataC" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
+    <input type="text" class="texts Ticker Restaurar" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'Ticker${idInputs}')">
+    <input type="text" class="texts datas Restaurar" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
+    <input type="text" class="texts datas Restaurar" name="dataC" id="dataC${idInputs}" placeholder="DataC" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
     <input type="text" class="texts quantidade" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" style="background: rgb(206, 206, 206);" onkeydown="calcularTotal('${idInputs}', '${
       idInputs + 1
     }', event)">
-    <input type="text" class="texts Valor" name="Valor" id="Valor${idInputs}" placeholder="Valor" style="background: rgb(206, 206, 206);">
+    <input type="text" class="texts Valor Restaurar" name="Valor" id="Valor${idInputs}" placeholder="Valor" style="background: rgb(206, 206, 206);">
     <input type="text" class="texts Total" name="Total" id="Total${idInputs}" placeholder="Total" style="background: rgb(206, 206, 206);" readonly><br>
     `;
 
@@ -193,11 +192,11 @@ function incrementarInputs() {
   if (idInputs % 2 === 0) {
     const inputs = `
       <section id="section${idInputs}">
-      <input type="text" class="texts Ticker" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'Ticker${idInputs}')">
-      <input type="text" class="texts datas" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
-      <input type="text" class="texts datas" name="dataC" id="dataC${idInputs}" placeholder="DataC" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
+      <input type="text" class="texts Ticker Restaurar" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'Ticker${idInputs}')">
+      <input type="text" class="texts datas Restaurar" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
+      <input type="text" class="texts datas Restaurar" name="dataC" id="dataC${idInputs}" placeholder="DataC" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
       <input type="text" class="texts quantidade" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" onkeydown="moveToNextInput(event, 'Valor${idInputs}')">
-      <input type="text" class="texts Valor" name="Valor" id="Valor${idInputs}" placeholder="Valor" onkeydown="calcularTotal('${idInputs}', '${
+      <input type="text" class="texts Valor Restaurar" name="Valor" id="Valor${idInputs}" placeholder="Valor" onkeydown="calcularTotal('${idInputs}', '${
       idInputs + 1
     }', event)">
       <input type="text" class="texts Total" name="Total" id="Total${idInputs}" placeholder="Total" readonly><br>
@@ -216,15 +215,15 @@ function incrementarInputs() {
 }
 
 function decrementarInputs() {
+  decrementando = true;
   const copiaDeIdInputs = idInputs - 1;
   idInputs = 0;
   document.getElementById("divDeSectionsComInputs").innerHTML = "";
   for (let condiçãoFor = 1; condiçãoFor <= copiaDeIdInputs; condiçãoFor++) {
     incrementarInputs(idInputs);
   }
+  decrementando = false;
   restaurarValores();
-  if (idInputs === 0) {
-  }
 }
 
 function moveToNextInput(event, nextInputId) {
@@ -233,6 +232,8 @@ function moveToNextInput(event, nextInputId) {
     document.getElementById(nextInputId).focus();
   }
 }
+
+
 
 function mostrarDropdown() {
   var listaEscolas = document.getElementById("listaEscolas");
@@ -256,14 +257,9 @@ function mostrarDropdown() {
   }
 }
 
-function selecionarEscola(nomeEscola) {
-  alert("Você selecionou a escola: " + nomeEscola);
+function selecionarEscola(urlDaPagina) {
+  recuperarInputsDeOutraPagina();
 
-  // Aqui você pode realizar outras ações ao selecionar uma escola
-  var listaEscolas = document.getElementById("listaEscolas");
-  title.style.borderRadius = "15px 15px 15px 15px";
-  listaEscolas.style.display = "none";
-  // Remove o ouvinte de eventos para fechar a lista
   document.removeEventListener("click", fecharDropdown);
 }
 
@@ -280,14 +276,15 @@ function fecharDropdown(event) {
   }
 }
 
+
 let buttonCalcular = document.getElementById(`cal`);
 buttonCalcular.addEventListener("click", calcularTotalDeCadaId);
 
-let confirmaçãoDeUltrapassarLimiteDeInputs = false;
 const ButtonPlus = document.getElementById("ButtonPlus");
 ButtonPlus.addEventListener("click", incrementarInputs);
 
 const ButtonDecrement = document.getElementById("ButtonDecrement");
+let decrementando = false;
 ButtonDecrement.addEventListener("click", decrementarInputs);
 
 document.addEventListener("wheel", function (event) {
