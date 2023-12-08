@@ -133,35 +133,19 @@ function calcularTotal(idDeCadaInput, linhaPorId, event) {
 }
 
 function salvarValores() {
-  if(recuperando){
-    const inputs = document.querySelectorAll(".Restaurar");
-    valoresInputs = Array.from(inputs).map((input) => input.value || "");
-  return
-  }else{
-    const inputs = document.querySelectorAll(".texts");
-    valoresInputs = Array.from(inputs).map((input) => input.value || "");
-  }
+  const inputs = document.querySelectorAll(".texts");
+  valoresInputs = Array.from(inputs).map((input) => input.value || "");
 }
 
 function restaurarValores() {
-  if(recuperando){
-    let inputsR = document.querySelectorAll(".Restaurar");
-    Array.from(inputsR).forEach((input, index) => {
-    input.value = valoresInputs[index] || "";
-    return
+  const inputs = document.querySelectorAll(".texts");
+  Array.from(inputs).forEach((input, index) => {
+  input.value = valoresInputs[index] || "";
   });
-  }else{
-    const inputs = document.querySelectorAll(".texts");
-    Array.from(inputs).forEach((input, index) => {
-     input.value = valoresInputs[index] || "";
-    });
-  }
 }
 
 function incrementarInputs() {
-  if(recuperando === false){
-    salvarValores();
-  }
+  salvarValores();
     
   if (idInputs === 0) {
     const inputs = `
@@ -241,17 +225,6 @@ function moveToNextInput(event, nextInputId) {
   }
 }
 
-// function recuperarInputsDeOutraPagina() {  a tentar
-//     const copiaDeIdInputs = idInputs ;
-//     idInputs = 0;
-//     recuperando = true
-//     for (let condiçãoFor = 1; condiçãoFor <= copiaDeIdInputs; condiçãoFor++) {
-//       incrementarInputs(idInputs);
-//     }
-//     restaurarValores();
-//     recuperando = false
-// }
-
 function mostrarDropdown() {
   var listaEscolas = document.getElementById("listaEscolas");
   var title = document.getElementById("title");
@@ -294,7 +267,28 @@ function fecharDropdown(event) {
   }
 }
 
-let recuperando = false
+let startY;
+document.addEventListener('touchstart', function(event) {
+    startY = event.touches[0].clientY;
+});
+
+document.addEventListener('touchmove', function(event) {
+    if (startY === undefined) {
+        return;
+    }
+
+    let deltaY = event.touches[0].clientY - startY;
+
+    // Adapte esse valor conforme necessário para a sensibilidade da rolagem
+    let sensitivity = 2.5;
+
+    window.scrollBy(0, deltaY * sensitivity);
+
+    // Reseta a posição inicial
+    startY = undefined;
+});
+
+
 
 let buttonCalcular = document.getElementById(`cal`);
 buttonCalcular.addEventListener("click", calcularTotalDeCadaId);

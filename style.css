@@ -37,9 +37,9 @@ html{
     box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.548);
     width: 40%;
     display: none;
-   position: absolute;
+    position: absolute;
     z-index: 2; /* Valor aumentado para garantir que fique sobreposto */
-   left: 50%; /* Centraliza a lista no eixo horizontal */
+    left: 50%; /* Centraliza a lista no eixo horizontal */
     transform: translateX(-50%); /* Ajusta para centralizar corretamente */    
 }
 .itemEscola {
@@ -60,39 +60,39 @@ html{
     border-radius: 0px 0px 15px 15px ;
 }
 .texts {
-    font-size: 26px;
+    font-size: 18px;
     margin-bottom: 5px;
     font-family: Arial, Helvetica, sans-serif;
 }
 .Ticker{
     margin-left: 5px;
-    width: 16%;
+    width: 18%;
     font-family: Arial, Helvetica, sans-serif;
 }
 .datas{
-    width: 8.5%;
+    width: 10.5%;
     font-family: Arial, Helvetica, sans-serif;
 }
 .quantidade {
-    width: 11%;
+    width: 13%;
     font-family: Arial, Helvetica, sans-serif;
 }
 .Valor{
-    width: 8%;
-    /* width: 65px; */
+    width: 10%;
     font-family: Arial, Helvetica, sans-serif;
 }
 .Total {
-    width: 15.6%;
+    width: 18.6%;
     font-family: Arial, Helvetica, sans-serif;
+    margin-right: 5px;
 }
 #divButtons {
     display: flex;
 }
 .ButtonPlusAndDecrement {
-    width: 70px;
-    height: 50px;
-    font-size: 30px;
+    width: 60px; 
+    height: 40px; 
+    font-size: 25px; 
     border-radius: 10px;
     border-width: 2px;
     text-align: center;
@@ -108,9 +108,9 @@ html{
 }
 #cal {
 
-    width: 160px;
-    height: 50px;
-    font-size: 30px;
+    width: 120px; 
+    height: 40px;
+    font-size: 20px; 
     border-radius: 10px;
     border-width: 2px;
     text-align: center;
@@ -123,3 +123,170 @@ html{
     cursor: pointer;
     background-color: #e5e5e5;
 }
+
+
+
+
+/* 320px - 480px = mobile */
+/* Em mobile first não precisa de MQ */
+  
+  /* 480px - 768px = tablet */
+  @media (min-width: 480px) {
+    .texts {
+        font-size: 21px;
+    }
+    .Ticker{
+        width: 18.5%;
+        margin-left: 5px;
+    }
+    .datas{
+        width: 11%;
+    }
+    .quantidade {
+        width: 13.5%;
+    }
+    .Valor{
+        width: 10.5%;
+    }
+    .Total {
+        width: 19.2%;
+    }
+    #cal {
+        width: 140px; 
+        height: 43px;
+        font-size: 23px; 
+        border-radius: 10px;
+        border-width: 2px;
+    }
+    .ButtonPlusAndDecrement {
+        width: 55px; 
+        height: 43px; 
+        font-size: 28px; 
+        border-radius: 10px;
+        border-width: 2px;
+    }
+  }
+  
+  /* 768px - 1024px = telas menores, laptops */
+  @media (min-width: 768px) {
+    .texts {
+        font-size: 35px;
+    }
+    .Ticker{
+        width: 19.5%;
+        margin-left: 5px;
+    }
+    .datas{
+        width: 12%;
+    }
+    .quantidade {
+        width: 14.5%;
+    }
+    .Valor{
+        width: 11.5%;
+    }
+    .Total {
+        width: 20.2%;
+    }
+    #cal {
+        width: 190px; 
+        height: 53px;
+        font-size: 37px;
+        border-radius: 13px;
+        border-width: 3px; 
+    }
+    .ButtonPlusAndDecrement {
+        width: 75px; 
+        height: 53px; 
+        font-size: 42px; 
+        border-radius: 13px;
+        border-width: 3px;
+    }
+  }
+  
+  /* 1024px - 1200px = desktop */
+  @media (min-width: 1024px) {
+    .texts {
+        font-size: 50px;
+    }
+    .Ticker{
+        width: 20%;
+        margin-left: 5px;
+    }
+    .datas{
+        width: 12.4%;
+    }
+    .quantidade {
+        width: 15%;
+    }
+    .Valor{
+        width: 11.9%;
+    }
+    .Total {
+        width: 20.6%;
+    }
+    #cal {
+        width: 250px; 
+        height: 70px;
+        font-size: 52px; 
+        border-radius: 17px;
+        border-width: 4px;
+    }
+    .ButtonPlusAndDecrement {
+        width: 100px; 
+        height: 70px; 
+        font-size: 57px; 
+        border-radius: 17px;
+        border-width: 4px;
+    }
+  }
+  
+  /* 1200 e + = telas maiores, tvs */
+  @media (min-width: 1200px) {
+    .texts {
+        font-size: 57px;
+        margin-bottom: 10px;
+        
+    }
+    .Ticker{
+        width: 19%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .datas{
+        width: 12.3%;
+        margin-right: 10px;
+    }
+    .quantidade {
+        width: 14.1%;
+    }
+    .Valor{
+        width: 11.5%;
+        margin-right: 10px;
+    }
+    .Total {
+        width: 20%;
+        margin-right: 10px;
+    }
+    #cal {
+        width: 280px; 
+        height: 80px;
+        font-size: 57px; 
+        border-radius: 19px;
+        border-width: 5px;
+        margin-left: 10px;
+    }
+    .ButtonPlusAndDecrement {
+        width: 130px; 
+        height: 80px; 
+        font-size: 62px; 
+        border-radius: 19px;
+        border-width: 5px;
+        margin-left: 10px;
+    }
+    #divButtons {
+        position: absolute;
+        left: 50%; /* Centraliza a lista no eixo horizontal */
+        transform: translateX(-50%); /* Ajusta para centralizar corretamente */
+    }
+  }
