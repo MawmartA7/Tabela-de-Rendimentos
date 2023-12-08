@@ -133,28 +133,36 @@ function calcularTotal(idDeCadaInput, linhaPorId, event) {
 }
 
 function salvarValores() {
-  if (recuperando) {
+  if(recuperando){
     const inputs = document.querySelectorAll(".Restaurar");
     valoresInputs = Array.from(inputs).map((input) => input.value || "");
-    return;
-  } else {
+  return
+  }else{
     const inputs = document.querySelectorAll(".texts");
     valoresInputs = Array.from(inputs).map((input) => input.value || "");
   }
 }
 
 function restaurarValores() {
-  const inputs = document.querySelectorAll(".texts");
-  Array.from(inputs).forEach((input, index) => {
+  if(recuperando){
+    let inputsR = document.querySelectorAll(".Restaurar");
+    Array.from(inputsR).forEach((input, index) => {
     input.value = valoresInputs[index] || "";
+    return
   });
+  }else{
+    const inputs = document.querySelectorAll(".texts");
+    Array.from(inputs).forEach((input, index) => {
+     input.value = valoresInputs[index] || "";
+    });
+  }
 }
 
 function incrementarInputs() {
-  if (recuperando === false) {
+  if(recuperando === false){
     salvarValores();
   }
-
+    
   if (idInputs === 0) {
     const inputs = `
     <input type="text" class="texts Ticker Restaurar" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'dataPG${idInputs}')">
@@ -215,14 +223,14 @@ function incrementarInputs() {
 }
 
 function decrementarInputs() {
-  decrementando = true;
+  decrementando = true
   const copiaDeIdInputs = idInputs - 1;
   idInputs = 0;
   document.getElementById("divDeSectionsComInputs").innerHTML = "";
   for (let condiçãoFor = 1; condiçãoFor <= copiaDeIdInputs; condiçãoFor++) {
     incrementarInputs(idInputs);
   }
-  decrementando = false;
+  decrementando = false
   restaurarValores();
 }
 
@@ -233,7 +241,16 @@ function moveToNextInput(event, nextInputId) {
   }
 }
 
-
+// function recuperarInputsDeOutraPagina() {  a tentar
+//     const copiaDeIdInputs = idInputs ;
+//     idInputs = 0;
+//     recuperando = true
+//     for (let condiçãoFor = 1; condiçãoFor <= copiaDeIdInputs; condiçãoFor++) {
+//       incrementarInputs(idInputs);
+//     }
+//     restaurarValores();
+//     recuperando = false
+// }
 
 function mostrarDropdown() {
   var listaEscolas = document.getElementById("listaEscolas");
@@ -258,7 +275,8 @@ function mostrarDropdown() {
 }
 
 function selecionarEscola(urlDaPagina) {
-  recuperarInputsDeOutraPagina();
+  recuperarInputsDeOutraPagina()
+  // window.location.href = `${urlDaPagina}.html`; a terminar
 
   document.removeEventListener("click", fecharDropdown);
 }
@@ -276,6 +294,7 @@ function fecharDropdown(event) {
   }
 }
 
+let recuperando = false
 
 let buttonCalcular = document.getElementById(`cal`);
 buttonCalcular.addEventListener("click", calcularTotalDeCadaId);
@@ -284,7 +303,7 @@ const ButtonPlus = document.getElementById("ButtonPlus");
 ButtonPlus.addEventListener("click", incrementarInputs);
 
 const ButtonDecrement = document.getElementById("ButtonDecrement");
-let decrementando = false;
+let decrementando = false
 ButtonDecrement.addEventListener("click", decrementarInputs);
 
 document.addEventListener("wheel", function (event) {
