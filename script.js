@@ -1,6 +1,35 @@
 let valoresInputs = [];
 let idInputs = 0;
 
+function checkSave(){
+  idInputs = Number(localStorage.getItem("totalDeIdInputs"))
+  if(isNaN(idInputs)){
+    alert("Erro")
+    idInputs = 0
+  }else{
+    let copiaDeIdInputs = idInputs
+    idInputs = 0
+    for(let condiçãoFor = 0; condiçãoFor <= copiaDeIdInputs; condiçãoFor++) {
+      let ticker = localStorage.getItem(`ticker${idInputs}`)
+      let dataPG = localStorage.getItem(`dataPG${idInputs}`)
+      let dataC = localStorage.getItem(`dataC${idInputs}`)
+      let valor = localStorage.getItem(`valor${idInputs}`)
+      incrementarInputs()
+      document.getElementById(`Ticker${idInputs - 1}`).value = ticker
+      document.getElementById(`dataPG${idInputs - 1}`).value = dataPG
+      document.getElementById(`dataC${idInputs - 1}`).value = dataC
+      document.getElementById(`Valor${idInputs - 1}`).value = valor
+    }
+  }
+}
+
+function ClearLocalStorage() {
+  const confirmaçãoDeClear = prompt('Digite "Clear" para deletar todos os dados salvos.')
+  if(confirmaçãoDeClear === "Clear"){
+    localStorage.clear()
+  }
+}
+
 function calcularTotalDeCadaId() {
   let idDeCadaInput = 0;
   for (let condiçãoFor = 1; condiçãoFor <= idInputs; condiçãoFor++) {
@@ -65,9 +94,18 @@ function calcularTotal(idDeCadaInput, linhaPorId, event) {
     const total = quantidadeV * ValorV;
     if (!(TickerV === TickerV.toUpperCase(TickerV))) {
       TickerT.value = `${TickerV.toUpperCase(TickerV)}`;
+      TickerV = TickerV.toUpperCase(TickerV);
     }
 
     Total.value = `R$${total}`;
+
+    localStorage.setItem("totalDeIdInputs", idDeCadaInput)
+    localStorage.setItem(`ticker${idDeCadaInput}`, TickerV)
+    localStorage.setItem(`dataPG${idDeCadaInput}`, dataPGV)
+    localStorage.setItem(`dataC${idDeCadaInput}`, dataCV)
+    localStorage.setItem(`valor${idDeCadaInput}`, ValorV)
+    
+    
   }
   if (event.key === "Enter") {
     event.preventDefault();
@@ -129,6 +167,13 @@ function calcularTotal(idDeCadaInput, linhaPorId, event) {
     }
 
     Total.value = `R$${total}`;
+    
+    localStorage.setItem("totalDeIdInputs", idDeCadaInput)
+    localStorage.setItem(`ticker${idDeCadaInput}`, TickerV)
+    localStorage.setItem(`dataPG${idDeCadaInput}`, dataPGV)
+    localStorage.setItem(`dataC${idDeCadaInput}`, dataCV)
+    localStorage.setItem(`valor${idDeCadaInput}`, ValorV)
+
   }
 }
 
@@ -223,11 +268,6 @@ function moveToNextInput(event, nextInputId) {
   }
 }
 
-let Aaron = true;
-let Michel = false;
-let Matthieu = false;
-let Monique = false;
-
 function mostrarDropdown() {
   let listaEscolas = document.getElementById("listaEscolas");
   let title = document.getElementById("title");
@@ -283,7 +323,6 @@ function selecionarEscola(nome) {
     for(let condiçãoFor = 0; condiçãoFor <= (idInputs - 1); condiçãoFor++) {
       let quantidadeT = document.getElementById(`quantidade${condiçãoFor}`);
       let TotalT = document.getElementById(`Total${condiçãoFor}`);
-      console.log(quantidadeT, TotalT)
       quantidadeT.value = "";
       TotalT.value = "";
     }
@@ -342,3 +381,8 @@ ButtonDecrement.addEventListener("click", decrementarInputs);
 document.addEventListener("wheel", function (event) {
   window.scrollBy(0, event.deltaY);
 });
+
+checkSave()
+
+let buttonClearLocalStorage = document.getElementById("buttonClearLocalStorage")
+buttonClearLocalStorage.addEventListener("click", ClearLocalStorage)
