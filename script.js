@@ -140,13 +140,13 @@ function salvarValores() {
 function restaurarValores() {
   const inputs = document.querySelectorAll(".texts");
   Array.from(inputs).forEach((input, index) => {
-  input.value = valoresInputs[index] || "";
+    input.value = valoresInputs[index] || "";
   });
 }
 
 function incrementarInputs() {
   salvarValores();
-    
+
   if (idInputs === 0) {
     const inputs = `
     <input type="text" class="texts Ticker Restaurar" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'dataPG${idInputs}')">
@@ -166,13 +166,11 @@ function incrementarInputs() {
   }
   if (idInputs % 2 != 0) {
     const inputs = `
-    <input type="text" class="texts Ticker Restaurar" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'Ticker${idInputs}')">
+    <input type="text" class="texts Ticker Restaurar" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'dataPG${idInputs}')">
     <input type="text" class="texts datas Restaurar" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
     <input type="text" class="texts datas Restaurar" name="dataC" id="dataC${idInputs}" placeholder="DataC" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
-    <input type="text" class="texts quantidade" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" style="background: rgb(206, 206, 206);" onkeydown="calcularTotal('${idInputs}', '${
-      idInputs + 1
-    }', event)">
-    <input type="text" class="texts Valor Restaurar" name="Valor" id="Valor${idInputs}" placeholder="Valor" style="background: rgb(206, 206, 206);">
+    <input type="text" class="texts quantidade" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'Valor${idInputs}')">
+    <input type="text" class="texts Valor Restaurar" name="Valor" id="Valor${idInputs}" placeholder="Valor" style="background: rgb(206, 206, 206);" onkeydown="calcularTotal('${idInputs}', '${idInputs + 1}', event)">
     <input type="text" class="texts Total" name="Total" id="Total${idInputs}" placeholder="Total" style="background: rgb(206, 206, 206);" readonly><br>
     `;
 
@@ -184,13 +182,13 @@ function incrementarInputs() {
   if (idInputs % 2 === 0) {
     const inputs = `
       <section id="section${idInputs}">
-      <input type="text" class="texts Ticker Restaurar" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'Ticker${idInputs}')">
+      <input type="text" class="texts Ticker Restaurar" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'dataPG${idInputs}')">
       <input type="text" class="texts datas Restaurar" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
       <input type="text" class="texts datas Restaurar" name="dataC" id="dataC${idInputs}" placeholder="DataC" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
       <input type="text" class="texts quantidade" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" onkeydown="moveToNextInput(event, 'Valor${idInputs}')">
       <input type="text" class="texts Valor Restaurar" name="Valor" id="Valor${idInputs}" placeholder="Valor" onkeydown="calcularTotal('${idInputs}', '${
       idInputs + 1
-    }', event)">
+    }', event)" >
       <input type="text" class="texts Total" name="Total" id="Total${idInputs}" placeholder="Total" readonly><br>
       </section>
       `;
@@ -207,14 +205,14 @@ function incrementarInputs() {
 }
 
 function decrementarInputs() {
-  decrementando = true
+  decrementando = true;
   const copiaDeIdInputs = idInputs - 1;
   idInputs = 0;
   document.getElementById("divDeSectionsComInputs").innerHTML = "";
   for (let condiçãoFor = 1; condiçãoFor <= copiaDeIdInputs; condiçãoFor++) {
     incrementarInputs(idInputs);
   }
-  decrementando = false
+  decrementando = false;
   restaurarValores();
 }
 
@@ -225,10 +223,42 @@ function moveToNextInput(event, nextInputId) {
   }
 }
 
-function mostrarDropdown() {
-  var listaEscolas = document.getElementById("listaEscolas");
-  var title = document.getElementById("title");
+let Aaron = true;
+let Michel = false;
+let Matthieu = false;
+let Monique = false;
 
+function mostrarDropdown() {
+  let listaEscolas = document.getElementById("listaEscolas");
+  let title = document.getElementById("title");
+  const valorH1 = title.textContent;
+  let styleAaron = document.getElementById('Aaron')
+  let styleMichel = document.getElementById('Michel')
+  let styleMatthieu = document.getElementById('Matthieu')
+  let styleMonique = document.getElementById('Monique')  
+  if (valorH1 === "Aaron") {
+    styleAaron.style.display = "none"
+    styleMichel.style.display = "block"
+    styleMatthieu.style.display = "block"
+    styleMonique.style.display = "block"
+  } else if (valorH1 === "Michel") {
+    styleAaron.style.display = "block"
+    styleMichel.style.display = "none"
+    styleMatthieu.style.display = "block"
+    styleMonique.style.display = "block"
+  } else if (valorH1 === "Matthieu") {
+    styleAaron.style.display = "block"
+    styleMichel.style.display = "block"
+    styleMatthieu.style.display = "none"
+    styleMonique.style.display = "block"
+    
+  } else if (valorH1 === "Monique") {
+    styleAaron.style.display = "block"
+    styleMichel.style.display = "block"
+    styleMatthieu.style.display = "block"
+    styleMonique.style.display = "none"
+  }
+  console.log(valorH1)
   if (
     listaEscolas.style.display === "none" ||
     listaEscolas.style.display === ""
@@ -247,10 +277,20 @@ function mostrarDropdown() {
   }
 }
 
-function selecionarEscola(urlDaPagina) {
-  recuperarInputsDeOutraPagina()
-  // window.location.href = `${urlDaPagina}.html`; a terminar
-
+function selecionarEscola(nome) {
+  title.innerHTML = nome;
+   if (idInputs !== 0) {
+    for(let condiçãoFor = 0; condiçãoFor <= (idInputs - 1); condiçãoFor++) {
+      let quantidadeT = document.getElementById(`quantidade${condiçãoFor}`);
+      let TotalT = document.getElementById(`Total${condiçãoFor}`);
+      console.log(quantidadeT, TotalT)
+      quantidadeT.value = "";
+      TotalT.value = "";
+    }
+    
+  }
+  title.style.borderRadius = "15px 15px 15px 15px";
+  listaEscolas.style.display = "none";
   document.removeEventListener("click", fecharDropdown);
 }
 
@@ -268,27 +308,26 @@ function fecharDropdown(event) {
 }
 
 let startY;
-document.addEventListener('touchstart', function(event) {
-    startY = event.touches[0].clientY;
+document.addEventListener("touchstart", function (event) {
+  startY = event.touches[0].clientY;
 });
 
-document.addEventListener('touchmove', function(event) {
-    if (startY === undefined) {
-        return;
-    }
+document.addEventListener("touchmove", function (event) {
+  if (startY === undefined) {
+    return;
+  }
 
-    let deltaY = event.touches[0].clientY - startY;
+  let deltaY = event.touches[0].clientY - startY;
 
-    // Adapte esse valor conforme necessário para a sensibilidade da rolagem
-    let sensitivity = 2.5;
+  // Adapte esse valor conforme necessário para a sensibilidade da rolagem
+  let sensitivity = 2.5;
 
-    window.scrollBy(0, deltaY * sensitivity);
+  window.scrollBy(0, deltaY * sensitivity);
 
-    // Reseta a posição inicial
-    startY = undefined;
+  // Reseta a posição inicial
+  startY = undefined;
+  event.preventDefault();
 });
-
-
 
 let buttonCalcular = document.getElementById(`cal`);
 buttonCalcular.addEventListener("click", calcularTotalDeCadaId);
@@ -297,7 +336,7 @@ const ButtonPlus = document.getElementById("ButtonPlus");
 ButtonPlus.addEventListener("click", incrementarInputs);
 
 const ButtonDecrement = document.getElementById("ButtonDecrement");
-let decrementando = false
+let decrementando = false;
 ButtonDecrement.addEventListener("click", decrementarInputs);
 
 document.addEventListener("wheel", function (event) {

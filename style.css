@@ -222,6 +222,7 @@ html{
     }
     .quantidade {
         width: 13%;
+        margin-right: 10px;
     }
     .Valor{
         width: 11.5%;
