@@ -9,23 +9,27 @@
 </head>
 <body id="body">
     <div>
-        <h1 id="title" onclick="mostrarDropdown()">Aaron</h1>
-        <div id="listaEscolas">
-            <h1 class="itemEscola" id="Aaron" onclick="selecionarEscola('Aaron')">Aaron</h1><br>
-            <h1 class="itemEscola" id="Michel" onclick="selecionarEscola('Michel')">Michel</h1><br>
-            <h1 class="itemEscola" id="Matthieu" onclick="selecionarEscola('Matthieu')">Matthieu</h1><br>
-            <h1 class="itemEscola" id="Monique" onclick="selecionarEscola('Monique')">Monique</h1>
-        </div>
+        <header>
+            <h1 id="title" onclick="mostrarDropdown()">Aaron</h1>
+            <div id="listaEscolas" class="elementosListaTitulo">
+                <h1 class="itemEscola" id="Aaron" onclick="selecionarEscola('Aaron')">Aaron</h1><br>
+                <h1 class="itemEscola" id="Michel" onclick="selecionarEscola('Michel')">Michel</h1><br>
+                <h1 class="itemEscola" id="Matthieu" onclick="selecionarEscola('Matthieu')">Matthieu</h1><br>
+                <h1 class="itemEscola" id="Monique" onclick="selecionarEscola('Monique')">Monique</h1>
+            </div>
+        </header>
         <div id="divDeSectionsComInputs">           
         </div>
         <div id="divButtons">
-        <button id="ButtonPlus" class="ButtonPlusAndDecrement">+</button>
-        <button id="ButtonDecrement" class="ButtonPlusAndDecrement">-</button>
-        <button id="cal" class="cal">Calcular</button>
-        <button id="buttonClearLocalStorage" class="ButtonPlusAndDecrement">c</button>
+        <button id="ButtonPlus" class="ButtonPlusAndDecrement" ><i class="fa-regular fa-square-plus icones" id="iPlus"></i></button>
+        <button id="ButtonDecrement" class="ButtonPlusAndDecrement"><i class="fa-regular fa-square-minus icones" id="iDecrement"></i></button>
+        <button id="cal" class="cal"><i class="fa-solid fa-calculator icones" id="iCal"></i></button>
+        <button id="buttonClear" class="ButtonPlusAndDecrement"><i id="iClear" class="fa-regular fa-trash-can icones"></i></button>
+
         </div>
     </div>
 </body>
 <script src="script.js" defer>
 </script>
 </html>
+

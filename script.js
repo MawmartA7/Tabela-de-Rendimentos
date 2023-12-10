@@ -3,10 +3,9 @@ let idInputs = 0;
 
 function checkSave(){
   idInputs = Number(localStorage.getItem("totalDeIdInputs"))
-  if(isNaN(idInputs)){
-    alert("Erro")
-    idInputs = 0
-  }else{
+  let VerificaçãoDeSalvamento = localStorage.getItem("totalDeIdInputs")
+  if(VerificaçãoDeSalvamento === "0"){VerificaçãoDeSalvamento = 1}
+  if(VerificaçãoDeSalvamento){
     let copiaDeIdInputs = idInputs
     idInputs = 0
     for(let condiçãoFor = 0; condiçãoFor <= copiaDeIdInputs; condiçãoFor++) {
@@ -20,13 +19,18 @@ function checkSave(){
       document.getElementById(`dataC${idInputs - 1}`).value = dataC
       document.getElementById(`Valor${idInputs - 1}`).value = valor
     }
+  }else{
+    idInputs = 0
   }
 }
 
 function ClearLocalStorage() {
   const confirmaçãoDeClear = prompt('Digite "Clear" para deletar todos os dados salvos.')
   if(confirmaçãoDeClear === "Clear"){
+    idInputs = 0
     localStorage.clear()
+    document.getElementById("divDeSectionsComInputs").innerHTML = "";
+
   }
 }
 
@@ -104,8 +108,8 @@ function calcularTotal(idDeCadaInput, linhaPorId, event) {
     localStorage.setItem(`dataPG${idDeCadaInput}`, dataPGV)
     localStorage.setItem(`dataC${idDeCadaInput}`, dataCV)
     localStorage.setItem(`valor${idDeCadaInput}`, ValorV)
-    
-    
+    localStorage.setItem(`quantidade${idDeCadaInput}`, quantidadeV)
+    localStorage.setItem(`total${idDeCadaInput}`, total)
   }
   if (event.key === "Enter") {
     event.preventDefault();
@@ -173,7 +177,8 @@ function calcularTotal(idDeCadaInput, linhaPorId, event) {
     localStorage.setItem(`dataPG${idDeCadaInput}`, dataPGV)
     localStorage.setItem(`dataC${idDeCadaInput}`, dataCV)
     localStorage.setItem(`valor${idDeCadaInput}`, ValorV)
-
+    localStorage.setItem(`quantidade${idDeCadaInput}`, quantidadeV)
+    localStorage.setItem(`total${idDeCadaInput}`, total)
   }
 }
 
@@ -194,11 +199,11 @@ function incrementarInputs() {
 
   if (idInputs === 0) {
     const inputs = `
-    <input type="text" class="texts Ticker Restaurar" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'dataPG${idInputs}')">
-    <input type="text" class="texts datas Restaurar" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
-    <input type="text" class="texts datas Restaurar" name="dataC" id="dataC${idInputs}" placeholder="DataC" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
+    <input type="text" class="texts Ticker" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'dataPG${idInputs}')">
+    <input type="text" class="texts datas" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
+    <input type="text" class="texts datas" name="dataC" id="dataC${idInputs}" placeholder="DataC" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
     <input type="text" class="texts quantidade" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" onkeydown="moveToNextInput(event, 'Valor${idInputs}')">
-    <input type="text" class="texts Valor Restaurar" name="Valor" id="Valor${idInputs}" placeholder="Valor" onkeydown="calcularTotal('${idInputs}', '${
+    <input type="text" class="texts Valor" name="Valor" id="Valor${idInputs}" placeholder="Valor" onkeydown="calcularTotal('${idInputs}', '${
       idInputs + 1
     }', event)">
     <input type="text" class="texts Total" name="Total" id="Total${idInputs}" placeholder="Total" readonly><br>
@@ -211,11 +216,11 @@ function incrementarInputs() {
   }
   if (idInputs % 2 != 0) {
     const inputs = `
-    <input type="text" class="texts Ticker Restaurar" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'dataPG${idInputs}')">
-    <input type="text" class="texts datas Restaurar" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
-    <input type="text" class="texts datas Restaurar" name="dataC" id="dataC${idInputs}" placeholder="DataC" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
+    <input type="text" class="texts Ticker" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'dataPG${idInputs}')">
+    <input type="text" class="texts datas" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
+    <input type="text" class="texts datas" name="dataC" id="dataC${idInputs}" placeholder="DataC" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
     <input type="text" class="texts quantidade" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" style="background: rgb(206, 206, 206);" onkeydown="moveToNextInput(event, 'Valor${idInputs}')">
-    <input type="text" class="texts Valor Restaurar" name="Valor" id="Valor${idInputs}" placeholder="Valor" style="background: rgb(206, 206, 206);" onkeydown="calcularTotal('${idInputs}', '${idInputs + 1}', event)">
+    <input type="text" class="texts Valor" name="Valor" id="Valor${idInputs}" placeholder="Valor" style="background: rgb(206, 206, 206);" onkeydown="calcularTotal('${idInputs}', '${idInputs + 1}', event)">
     <input type="text" class="texts Total" name="Total" id="Total${idInputs}" placeholder="Total" style="background: rgb(206, 206, 206);" readonly><br>
     `;
 
@@ -227,11 +232,11 @@ function incrementarInputs() {
   if (idInputs % 2 === 0) {
     const inputs = `
       <section id="section${idInputs}">
-      <input type="text" class="texts Ticker Restaurar" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'dataPG${idInputs}')">
-      <input type="text" class="texts datas Restaurar" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
-      <input type="text" class="texts datas Restaurar" name="dataC" id="dataC${idInputs}" placeholder="DataC" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
+      <input type="text" class="texts Ticker" name="Ticker" id="Ticker${idInputs}" placeholder="Ticker" onkeydown="moveToNextInput(event, 'dataPG${idInputs}')">
+      <input type="text" class="texts datas" name="dataPG" id="dataPG${idInputs}" placeholder="DataPG" onkeydown="moveToNextInput(event, 'dataC${idInputs}')">
+      <input type="text" class="texts datas" name="dataC" id="dataC${idInputs}" placeholder="DataC" onkeydown="moveToNextInput(event, 'quantidade${idInputs}')">
       <input type="text" class="texts quantidade" name="quantidade" id="quantidade${idInputs}" placeholder="Quant" onkeydown="moveToNextInput(event, 'Valor${idInputs}')">
-      <input type="text" class="texts Valor Restaurar" name="Valor" id="Valor${idInputs}" placeholder="Valor" onkeydown="calcularTotal('${idInputs}', '${
+      <input type="text" class="texts Valor" name="Valor" id="Valor${idInputs}" placeholder="Valor" onkeydown="calcularTotal('${idInputs}', '${
       idInputs + 1
     }', event)" >
       <input type="text" class="texts Total" name="Total" id="Total${idInputs}" placeholder="Total" readonly><br>
@@ -250,15 +255,12 @@ function incrementarInputs() {
 }
 
 function decrementarInputs() {
-  decrementando = true;
   const copiaDeIdInputs = idInputs - 1;
   idInputs = 0;
   document.getElementById("divDeSectionsComInputs").innerHTML = "";
   for (let condiçãoFor = 1; condiçãoFor <= copiaDeIdInputs; condiçãoFor++) {
     incrementarInputs(idInputs);
   }
-  decrementando = false;
-  restaurarValores();
 }
 
 function moveToNextInput(event, nextInputId) {
@@ -365,7 +367,6 @@ document.addEventListener("touchmove", function (event) {
 
   // Reseta a posição inicial
   startY = undefined;
-  event.preventDefault();
 });
 
 let buttonCalcular = document.getElementById(`cal`);
@@ -375,7 +376,6 @@ const ButtonPlus = document.getElementById("ButtonPlus");
 ButtonPlus.addEventListener("click", incrementarInputs);
 
 const ButtonDecrement = document.getElementById("ButtonDecrement");
-let decrementando = false;
 ButtonDecrement.addEventListener("click", decrementarInputs);
 
 document.addEventListener("wheel", function (event) {
@@ -384,5 +384,5 @@ document.addEventListener("wheel", function (event) {
 
 checkSave()
 
-let buttonClearLocalStorage = document.getElementById("buttonClearLocalStorage")
-buttonClearLocalStorage.addEventListener("click", ClearLocalStorage)
+let buttonClear = document.getElementById("buttonClear")
+buttonClear.addEventListener("click", ClearLocalStorage)
