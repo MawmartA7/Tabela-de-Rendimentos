@@ -56,13 +56,17 @@ header {
   background-color: #d4d4d4;
   border-radius: 0px 0px 15px 15px;
 }
-#divDeSectionsComInputs {
+#divDeDivsComInputs {
   margin-top: 20px;
+}
+.divInputs.linhaCinza> *{
+  background-color: rgb(206, 206, 206);
 }
 .texts {
   font-size: 12px;
   margin-bottom: 5px;
   font-family: Arial, Helvetica, sans-serif;
+  border: 0px;
 }
 .Ticker {
   margin-left: 5px;
@@ -93,6 +97,47 @@ header {
   background-color: transparent;
   border: none;
 }
+#cal {
+  background-color: transparent;
+  border: none;
+}
+.buttonConfirmationAndButtonCancel{
+  background-color: transparent;
+  border: none;
+}
+#buttonStartSelectionRemove{
+  margin-right: 10px;
+}
+#buttonSelectAllInputs{
+  margin-top: 2px;
+  margin-left: 5px;
+  margin-right: 10px;
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+  background-color: transparent;
+  border-radius: 5px;
+  border: solid 2px white;
+  height: 18px;
+  width: 25px;
+  text-align: center;
+  cursor: pointer;
+  padding: 2px;
+  transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+#buttonSelectAllInputs:hover{
+  border-color: #d4d4d4;
+  color: #d4d4d4;
+}
+.removeButtons{
+  display: none;
+}
+#buttonCancel{
+  margin-left: 0;
+}
+.esquerda{
+  margin-left: auto;
+}
 .icones{
     font-size: 20px;
     color: white;
@@ -102,11 +147,9 @@ header {
     color: #d4d4d4;
     transition: color 0.3s ease-in-out;
 }
-#cal {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  
+
+.divInputs.selected > *{
+  background-color: rgb(223, 122, 122);
 }
 
 /* 320px - 480px = mobile */
@@ -136,6 +179,13 @@ header {
   .icones {
     font-size: 28px;
   }
+  #buttonSelectAllInputs{
+    margin-top: 2px;
+    font-size: 14px;
+    border: solid 3px white;
+    height: 25px;
+    width: 33px;
+  }
 }
 
 /* 768px - 1024px = telas menores, laptops TODO:*/
@@ -162,6 +212,14 @@ header {
   .icones {
     font-size: 42px;
   }
+  #buttonSelectAllInputs{
+    margin-top: 3px;
+    font-size: 20px;
+    border: solid 4px white;
+    height: 36px;
+    width: 46px;
+  }
+
 }
 
 /* 1024px - 1200px = desktop, telas maiores, tvs */
@@ -193,6 +251,14 @@ header {
   }
   .icones {
     font-size: 42px;
+    margin-left: 10px;
+  }
+  #buttonSelectAllInputs{
+    margin-top: 3px;
+    font-size: 20px;
+    border: solid 4px white;
+    height: 36px;
+    width: 46px;
     margin-left: 10px;
   }
 }
